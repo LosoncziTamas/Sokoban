@@ -4,16 +4,16 @@ namespace Code
 {
     public class Tile : MonoBehaviour
     {
-        [SerializeField] private TileList _tileList;
+        [SerializeField] protected TileList TileList;
         
         private void Awake()
         {
-            _tileList.Add(this);
+            TileList.Add(this);
         }
 
         private void OnDestroy()
         {
-            _tileList.Remove(this);
+            TileList.Remove(this);
         }
     }
 }
