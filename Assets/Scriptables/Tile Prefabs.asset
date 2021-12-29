@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Tile Prefabs
   m_EditorClassIdentifier: 
   BaseTile: {fileID: 3053378919396620766, guid: 8ed020038917c4b518f2605459e0a1ec, type: 3}
-  Wall: {fileID: 4541711639848843150, guid: 1513f916cee28413da9f3d2d4fa8d799, type: 3}
+  Wall: {fileID: 390223840810725273, guid: 1513f916cee28413da9f3d2d4fa8d799, type: 3}
+  Player: {fileID: 4169777668187956799, guid: 5a2f1d7f84a5a491ca9e881d63e440f6, type: 3}

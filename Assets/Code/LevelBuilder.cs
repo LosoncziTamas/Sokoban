@@ -14,7 +14,7 @@ namespace Code
             '_','_','1','1','1','_','_',
             '_','_','1','0','1','_','_',
             '1','1','1','o','1','1','1',
-            '1','o','x','0','x','o','1',
+            '1','o','x','s','x','o','1',
             '1','1','1','x','1','1','1',
             '_','_','1','o','1','_','_',
             '_','_','1','1','1','_','_'
@@ -39,16 +39,29 @@ namespace Code
                     {
                         case '_':
                             break;
+                        case 's':
+                        {
+                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            tile.name = $"Start Tile x: {x} y: {y}";
+                            tile.transform.localPosition = spawnPos + tile.Offset;
+                            
+                            var player = Instantiate(_tilePrefabs.Player, transform);
+                            var playerOffset = Vector3.up * 0.7f;
+                            player.transform.localPosition = spawnPos + playerOffset;
+                            break;
+                        }
                         case '1':
                         {
                             var tile = Instantiate(_tilePrefabs.Wall, transform);
-                            tile.transform.localPosition = spawnPos;
+                            tile.name = $"Wall x: {x} y: {y}";
+                            tile.transform.localPosition = spawnPos + tile.Offset;
                             break;
                         }
                         default:
                         {
                             var tile = Instantiate(_tilePrefabs.BaseTile, transform);
-                            tile.transform.localPosition = spawnPos;
+                            tile.name = $"Base Tile x: {x} y: {y}";
+                            tile.transform.localPosition = spawnPos + tile.Offset;
                             break;
                         }
                     }

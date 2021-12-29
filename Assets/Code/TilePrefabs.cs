@@ -7,6 +7,6 @@ namespace Code
     {
         public Tile BaseTile;
         public Tile Wall;
-
+        public GameObject Player;
     }
 }
