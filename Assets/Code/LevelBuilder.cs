@@ -12,8 +12,8 @@ namespace Code
         private char[] _level = 
         {
             '_','_','1','1','1','_','_',
-            '_','_','1','0','1','_','_',
-            '1','1','1','o','1','1','1',
+            '_','_','1','o','1','_','_',
+            '1','1','1','x','1','1','1',
             '1','o','x','s','x','o','1',
             '1','1','1','x','1','1','1',
             '_','_','1','o','1','_','_',
@@ -39,6 +39,17 @@ namespace Code
                     {
                         case '_':
                             break;
+                        case 'x':
+                        {
+                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            tile.name = $"Box Tile x: {x} y: {y}";
+                            tile.transform.localPosition = spawnPos + tile.Offset;
+                            
+                            var box = Instantiate(_tilePrefabs.Box, transform);
+                            var boxOffset = Vector3.up * 0.1f;
+                            box.transform.localPosition = spawnPos + boxOffset;
+                            break;
+                        }
                         case 's':
                         {
                             var tile = Instantiate(_tilePrefabs.BaseTile, transform);
