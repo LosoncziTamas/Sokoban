@@ -1,3 +1,4 @@
+using System.Collections;
 using Code.GameInput;
 using UnityEngine;
 
@@ -5,12 +6,30 @@ namespace Code.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public float moveSpeed;
+        public float threshold;
+        
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private PlayerSensors _sensors;
         [SerializeField] private Rigidbody _rigidbody;
 
+        private bool _moving;
+
+        private IEnumerator Move(Vector3 targetPos)
+        {
+            _moving = true;
+            transform.position = targetPos;
+            _moving = false;
+            yield break;
+        }
+
         private void Update()
         {
+            if (_moving)
+            {
+                return;
+            }
+            
             if (_playerInput.Left)
             {
                 if (!_sensors.CanMoveLeft())
@@ -18,7 +37,9 @@ namespace Code.Player
                     Debug.Log("Can't move left");
                     return;
                 }
-                Debug.Log("Left");
+
+                var targetPos = transform.position + Vector3.left;
+                StartCoroutine(Move(targetPos));
             }
             if (_playerInput.Right)
             {
@@ -27,7 +48,8 @@ namespace Code.Player
                     Debug.Log("Can't move right");
                     return;
                 }    
-                Debug.Log("Right");
+                var targetPos = transform.position + Vector3.right;
+                StartCoroutine(Move(targetPos));            
             }
             if (_playerInput.Up)
             {
@@ -36,7 +58,8 @@ namespace Code.Player
                     Debug.Log("Can't move forward");
                     return;
                 }
-                Debug.Log("Up");
+                var targetPos = transform.position + Vector3.forward;
+                StartCoroutine(Move(targetPos));
             }
             if (_playerInput.Down)
             {
@@ -45,7 +68,8 @@ namespace Code.Player
                     Debug.Log("Can't move backward");
                     return;
                 }
-                Debug.Log("Down");
+                var targetPos = transform.position + Vector3.back;
+                StartCoroutine(Move(targetPos));
             }
         }
     }

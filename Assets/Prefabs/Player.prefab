@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70df08ef82304499b2ce84ab974824df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftSensor: {fileID: 781074971189814209}
-  _rightSensor: {fileID: 3659780400501887540}
+  _leftSensor: {fileID: 3659780400501887540}
+  _rightSensor: {fileID: 781074971189814209}
   _forwardSensor: {fileID: 7316923686327062211}
   _backSensor: {fileID: 1718076515789900276}
 --- !u!1 &3151088434245608050
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5015141642339748099}
   - component: {fileID: 781074971189814209}
   m_Layer: 0
-  m_Name: Left
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,6 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e725b61e715f40a3952c480644d3280f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
+  threshold: 0.1
   _playerInput: {fileID: 11400000, guid: 22442946b5cf545aa8fe061a35fabbfb, type: 2}
   _sensors: {fileID: 7089667830406016804}
   _rigidbody: {fileID: 2393514181666032305}
@@ -364,7 +366,7 @@ GameObject:
   - component: {fileID: 4446688818107332191}
   - component: {fileID: 3659780400501887540}
   m_Layer: 0
-  m_Name: Right
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
