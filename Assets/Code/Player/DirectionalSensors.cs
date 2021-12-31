@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Player
 {
-    public class PlayerSensors : MonoBehaviour
+    public class DirectionalSensors : MonoBehaviour
     {
         [SerializeField] private Sensor _leftSensor;
         [SerializeField] private Sensor _rightSensor;

@@ -11,7 +11,7 @@ namespace Code.Player
         public float threshold;
         
         [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private PlayerSensors _sensors;
+        [SerializeField] private DirectionalSensors _sensors;
         [SerializeField] private Rigidbody _rigidbody;
 
         private bool _moving;
@@ -76,15 +76,21 @@ namespace Code.Player
         private void BeginMove(Direction direction, Vector3 targetPos)
         {
             var movable = _sensors.GetMovableGameObject(direction);
+            var successfulPush = true; 
+            
             if (movable != null)
             {
                 var pushable = movable.GetComponent<Pushable>();
                 if (pushable != null)
                 {
-                    pushable.Push(direction);
+                    successfulPush = pushable.Push(direction);
                 }
             }
-            StartCoroutine(Move(targetPos));
+            
+            if (successfulPush)
+            {
+                StartCoroutine(Move(targetPos));
+            }
         }
     }
 }

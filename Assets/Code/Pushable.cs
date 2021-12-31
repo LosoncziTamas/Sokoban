@@ -1,13 +1,21 @@
 using System;
 using Code.Common;
+using Code.Player;
 using UnityEngine;
 
 namespace Code
 {
     public class Pushable : MonoBehaviour
     {
-        public void Push(Direction to)
+        [SerializeField] private DirectionalSensors _sensors;
+        
+        public bool Push(Direction to)
         {
+            if (!CanMoveToDirection(to))
+            {
+                return false;
+            }
+            
             var offset = to switch
             {
                 Direction.Left => Vector3.left,
@@ -18,7 +26,17 @@ namespace Code
             };
 
             transform.position += offset;
-            Debug.Log("push dir" + offset);
+
+            return true;
         }
+
+        private bool CanMoveToDirection(Direction to)
+        {
+            return to == Direction.Back && _sensors.CanMove(Direction.Back) || 
+                   to == Direction.Forward && _sensors.CanMove(Direction.Forward) || 
+                   to == Direction.Left && _sensors.CanMove(Direction.Left) || 
+                   to == Direction.Right && _sensors.CanMove(Direction.Right);
+        }
+        
     }
 }
