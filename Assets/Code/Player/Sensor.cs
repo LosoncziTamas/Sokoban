@@ -1,3 +1,4 @@
+using Code.Common;
 using UnityEngine;
 
 namespace Code.Player
@@ -5,21 +6,26 @@ namespace Code.Player
     [RequireComponent(typeof(Collider))]
     public class Sensor : MonoBehaviour
     {
-        public bool Colliding { private set; get; }
+        // TODO: support multiple collisions
+        public bool Blocked { private set; get; }
+        public GameObject MovableGameObject { private set; get; }
         
         private void OnTriggerEnter(Collider other)
         {
-            Colliding = true;
+            if (other.gameObject.layer == PhysicsUtils.MovableLayer)
+            {
+                MovableGameObject = other.gameObject;
+            }
+            else
+            {
+                Blocked = true;
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Colliding = false;
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            Colliding = true;
+            Blocked = false;
+            MovableGameObject = null;
         }
     }
 }

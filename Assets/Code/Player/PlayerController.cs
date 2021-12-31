@@ -1,4 +1,5 @@
 using System.Collections;
+using Code.Common;
 using Code.GameInput;
 using UnityEngine;
 
@@ -32,45 +33,58 @@ namespace Code.Player
             
             if (_playerInput.Left)
             {
-                if (!_sensors.CanMoveLeft())
+                if (!_sensors.CanMove(Direction.Left))
                 {
                     Debug.Log("Can't move left");
                     return;
                 }
 
-                var targetPos = transform.position + Vector3.left;
-                StartCoroutine(Move(targetPos));
+                BeginMove(Direction.Left, transform.position + Vector3.left);
             }
             if (_playerInput.Right)
             {
-                if (!_sensors.CanMoveRight())
+                if (!_sensors.CanMove(Direction.Right))
                 {
                     Debug.Log("Can't move right");
                     return;
                 }    
-                var targetPos = transform.position + Vector3.right;
-                StartCoroutine(Move(targetPos));            
+                
+                BeginMove(Direction.Right, transform.position + Vector3.right);
+
             }
             if (_playerInput.Up)
             {
-                if (!_sensors.CanMoveForward())
+                if (!_sensors.CanMove(Direction.Forward))
                 {
                     Debug.Log("Can't move forward");
                     return;
                 }
-                var targetPos = transform.position + Vector3.forward;
-                StartCoroutine(Move(targetPos));
+                BeginMove(Direction.Forward, transform.position + Vector3.forward);
+
             }
             if (_playerInput.Down)
             {
-                if (!_sensors.CanMoveBackward())
+                if (!_sensors.CanMove(Direction.Back))
                 {
                     Debug.Log("Can't move backward");
                     return;
                 }
-                var targetPos = transform.position + Vector3.back;
-                StartCoroutine(Move(targetPos));
+                BeginMove(Direction.Back, transform.position + Vector3.back);
             }
+        }
+
+        private void BeginMove(Direction direction, Vector3 targetPos)
+        {
+            var movable = _sensors.GetMovableGameObject(direction);
+            if (movable != null)
+            {
+                var pushable = movable.GetComponent<Pushable>();
+                if (pushable != null)
+                {
+                    pushable.Push(direction);
+                }
+            }
+            StartCoroutine(Move(targetPos));
         }
     }
 }
