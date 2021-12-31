@@ -13,6 +13,7 @@ namespace Code.Player
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private DirectionalSensors _sensors;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Console _console;
 
         private bool _moving;
 
@@ -35,7 +36,7 @@ namespace Code.Player
             {
                 if (!_sensors.CanMove(Direction.Left))
                 {
-                    Debug.Log("Can't move left");
+                    _console.Send("Can't move left");
                     return;
                 }
 
@@ -45,7 +46,7 @@ namespace Code.Player
             {
                 if (!_sensors.CanMove(Direction.Right))
                 {
-                    Debug.Log("Can't move right");
+                    _console.Send("Can't move right");
                     return;
                 }    
                 
@@ -56,7 +57,7 @@ namespace Code.Player
             {
                 if (!_sensors.CanMove(Direction.Forward))
                 {
-                    Debug.Log("Can't move forward");
+                    _console.Send("Can't move forward");
                     return;
                 }
                 BeginMove(Direction.Forward, transform.position + Vector3.forward);
@@ -66,7 +67,7 @@ namespace Code.Player
             {
                 if (!_sensors.CanMove(Direction.Back))
                 {
-                    Debug.Log("Can't move backward");
+                    _console.Send("Can't move backward");
                     return;
                 }
                 BeginMove(Direction.Back, transform.position + Vector3.back);
