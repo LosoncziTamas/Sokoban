@@ -50,6 +50,17 @@ namespace Code
                             box.transform.localPosition = spawnPos + boxOffset;
                             break;
                         }
+                        case 'o':
+                        {
+                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            tile.name = $"Goal Tile x: {x} y: {y}";
+                            tile.transform.localPosition = spawnPos + tile.Offset;
+                            
+                            var goal = Instantiate(_tilePrefabs.Goal, transform);
+                            var goalOffset = Vector3.up * 0.1f;
+                            goal.transform.localPosition = spawnPos + goalOffset;
+                            break;
+                        }
                         case 's':
                         {
                             var tile = Instantiate(_tilePrefabs.BaseTile, transform);

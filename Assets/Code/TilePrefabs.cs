@@ -9,5 +9,6 @@ namespace Code
         public Tile Wall;
         public GameObject Player;
         public GameObject Box;
+        public GameObject Goal;
     }
 }
