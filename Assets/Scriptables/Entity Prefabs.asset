@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d494b87b269149ca88f1426bf7e39c3e, type: 3}
-  m_Name: Tile Prefabs
+  m_Name: Entity Prefabs
   m_EditorClassIdentifier: 
-  BaseTile: {fileID: 3053378919396620766, guid: 8ed020038917c4b518f2605459e0a1ec, type: 3}
+  _baseEntity: {fileID: 3053378919396620766, guid: 8ed020038917c4b518f2605459e0a1ec, type: 3}
   Wall: {fileID: 390223840810725273, guid: 1513f916cee28413da9f3d2d4fa8d799, type: 3}
   Player: {fileID: 4169777668187956799, guid: 5a2f1d7f84a5a491ca9e881d63e440f6, type: 3}
   Box: {fileID: 7988019288429534747, guid: b5493cecc5dbe438a88d0daddf6c1607, type: 3}

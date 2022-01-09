@@ -3,7 +3,7 @@ using Code.Common;
 using Code.Player;
 using UnityEngine;
 
-namespace Code
+namespace Code.Entities
 {
     public class Pushable : MonoBehaviour
     {

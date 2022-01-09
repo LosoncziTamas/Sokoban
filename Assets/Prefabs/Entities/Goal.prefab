@@ -109,5 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cb2b984fd419caebff59711f16bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileList: {fileID: 11400000, guid: 060dceeb364f14b949dba5a8d2355d3b, type: 2}
+  _entityList: {fileID: 11400000, guid: 060dceeb364f14b949dba5a8d2355d3b, type: 2}
   Offset: {x: 0, y: 0, z: 0}
+  EntityType: 2

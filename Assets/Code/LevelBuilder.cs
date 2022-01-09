@@ -1,4 +1,6 @@
+using Code.Entities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code
 {
@@ -7,7 +9,7 @@ namespace Code
         private const int DimX = 7;
         private const int DimY = 7;
         
-        [SerializeField] private TilePrefabs _tilePrefabs;
+        [FormerlySerializedAs("_tilePrefabs")] [SerializeField] private EntityPrefabs _entityPrefabs;
 
         private char[] _level = 
         {
@@ -41,47 +43,47 @@ namespace Code
                             break;
                         case 'x':
                         {
-                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            var tile = Instantiate(_entityPrefabs._baseEntity, transform);
                             tile.name = $"Box Tile x: {x} y: {y}";
                             tile.transform.localPosition = spawnPos + tile.Offset;
                             
-                            var box = Instantiate(_tilePrefabs.Box, transform);
+                            var box = Instantiate(_entityPrefabs.Box, transform);
                             var boxOffset = Vector3.up * 0.1f;
                             box.transform.localPosition = spawnPos + boxOffset;
                             break;
                         }
                         case 'o':
                         {
-                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            var tile = Instantiate(_entityPrefabs._baseEntity, transform);
                             tile.name = $"Goal Tile x: {x} y: {y}";
                             tile.transform.localPosition = spawnPos + tile.Offset;
                             
-                            var goal = Instantiate(_tilePrefabs.Goal, transform);
+                            var goal = Instantiate(_entityPrefabs.Goal, transform);
                             var goalOffset = Vector3.up * 0.1f;
                             goal.transform.localPosition = spawnPos + goalOffset;
                             break;
                         }
                         case 's':
                         {
-                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            var tile = Instantiate(_entityPrefabs._baseEntity, transform);
                             tile.name = $"Start Tile x: {x} y: {y}";
                             tile.transform.localPosition = spawnPos + tile.Offset;
                             
-                            var player = Instantiate(_tilePrefabs.Player, transform);
+                            var player = Instantiate(_entityPrefabs.Player, transform);
                             var playerOffset = Vector3.up * 0.7f;
                             player.transform.localPosition = spawnPos + playerOffset;
                             break;
                         }
                         case '1':
                         {
-                            var tile = Instantiate(_tilePrefabs.Wall, transform);
+                            var tile = Instantiate(_entityPrefabs.Wall, transform);
                             tile.name = $"Wall x: {x} y: {y}";
                             tile.transform.localPosition = spawnPos + tile.Offset;
                             break;
                         }
                         default:
                         {
-                            var tile = Instantiate(_tilePrefabs.BaseTile, transform);
+                            var tile = Instantiate(_entityPrefabs._baseEntity, transform);
                             tile.name = $"Base Tile x: {x} y: {y}";
                             tile.transform.localPosition = spawnPos + tile.Offset;
                             break;

@@ -10,6 +10,7 @@ namespace Code.Common
 
         public void Raise()
         {
+            Debug.Log($"Event raised: {name}");
             // looping backwards: a listener response can include removing the listener.
             for (var i = _listeners.Count - 1; i >= 0; i--)
             {

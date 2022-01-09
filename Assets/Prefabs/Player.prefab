@@ -131,8 +131,9 @@ MonoBehaviour:
   threshold: 0.1
   _playerInput: {fileID: 11400000, guid: 22442946b5cf545aa8fe061a35fabbfb, type: 2}
   _sensors: {fileID: 7089667830406016804}
-  _rigidbody: {fileID: 2393514181666032305}
   _console: {fileID: 11400000, guid: 97813e4eab46c4f05b335ee8e7d8a872, type: 2}
+  _entityList: {fileID: 11400000, guid: 060dceeb364f14b949dba5a8d2355d3b, type: 2}
+  _levelCompletionEvent: {fileID: 11400000, guid: e1e03449f59d44894a8e2d12bfb3a065, type: 2}
 --- !u!1001 &1043421929405966306
 PrefabInstance:
   m_ObjectHideFlags: 0

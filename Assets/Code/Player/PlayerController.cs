@@ -1,5 +1,6 @@
 using System.Collections;
 using Code.Common;
+using Code.Entities;
 using Code.GameInput;
 using UnityEngine;
 
@@ -12,9 +13,10 @@ namespace Code.Player
         
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private DirectionalSensors _sensors;
-        [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Console _console;
-
+        [SerializeField] private EntityList _entityList;
+        [SerializeField] private GameEvent _levelCompletionEvent;
+        
         private bool _moving;
 
         private IEnumerator Move(Vector3 targetPos)
@@ -22,6 +24,7 @@ namespace Code.Player
             _moving = true;
             transform.position = targetPos;
             _moving = false;
+            CheckCompletion();
             yield break;
         }
 
@@ -72,6 +75,13 @@ namespace Code.Player
                 }
                 BeginMove(Direction.Back, transform.position + Vector3.back);
             }
+        }
+
+        private void CheckCompletion()
+        {
+            var goals = _entityList.GetEntitiesByType(EntityType.Goal);
+            // TODO: implement logic
+            _levelCompletionEvent.Raise();
         }
 
         private void BeginMove(Direction direction, Vector3 targetPos)
