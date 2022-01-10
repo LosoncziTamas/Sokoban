@@ -24,8 +24,8 @@ namespace Code.Player
             _moving = true;
             transform.position = targetPos;
             _moving = false;
+            yield return new WaitForFixedUpdate();
             CheckCompletion();
-            yield break;
         }
 
         private void Update()
@@ -80,8 +80,21 @@ namespace Code.Player
         private void CheckCompletion()
         {
             var goals = _entityList.GetEntitiesByType(EntityType.Goal);
-            // TODO: implement logic
-            _levelCompletionEvent.Raise();
+            var completedGoalCount = 0;
+            
+            foreach (var goal in goals)
+            {
+                var sensor = goal.GetComponent<Sensor>();
+                if (sensor && sensor.MovableGameObject)
+                {
+                    completedGoalCount++;
+                }
+            }
+
+            if (completedGoalCount == goals.Count)
+            {
+                _levelCompletionEvent.Raise();
+            }
         }
 
         private void BeginMove(Direction direction, Vector3 targetPos)

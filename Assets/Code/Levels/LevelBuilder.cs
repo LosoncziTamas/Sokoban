@@ -1,41 +1,24 @@
 using Code.Entities;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Code
+namespace Code.Levels
 {
     public class LevelBuilder : MonoBehaviour
     {
-        private const int DimX = 7;
-        private const int DimY = 7;
+        [SerializeField] private EntityPrefabs _entityPrefabs;
         
-        [FormerlySerializedAs("_tilePrefabs")] [SerializeField] private EntityPrefabs _entityPrefabs;
-
-        private char[] _level = 
+        public void Create(LevelLayoutData layoutData)
         {
-            '_','_','1','1','1','_','_',
-            '_','_','1','o','1','_','_',
-            '1','1','1','x','1','1','1',
-            '1','o','x','s','x','o','1',
-            '1','1','1','x','1','1','1',
-            '_','_','1','o','1','_','_',
-            '_','_','1','1','1','_','_'
-        };
-
-        private void Awake()
-        {
-            Create();
-        }
-
-        private void Create()
-        {
+            var dimX = layoutData.DimX;
+            var dimY = layoutData.DimY;
+            var sourceData = layoutData.Raw;
             var offset = 1.0f;
-            var spawnStart = (Vector3.left * DimX * 0.5f) + (Vector3.back * DimY * 0.5f);
-            for (var y = DimY - 1; y >= 0; y--)
+            var spawnStart = (Vector3.left * dimX * 0.5f) + (Vector3.back * dimY * 0.5f);
+            for (var y = dimY - 1; y >= 0; y--)
             {
-                for (var x = 0; x < DimX; x++)
+                for (var x = 0; x < dimX; x++)
                 {
-                    var levelData = _level[y * DimY + x];
+                    var levelData = sourceData[y * dimY + x];
                     var spawnPos = spawnStart + new Vector3(x, 0, y);
                     switch (levelData)
                     {
@@ -90,6 +73,16 @@ namespace Code
                         }
                     }
                 }
+            }
+        }
+
+        public void Destroy()
+        {
+            var childCount = transform.childCount;
+            for (var i = 0; i < childCount; ++i)
+            {
+                var child = transform.GetChild(i);
+                GameObject.Destroy(child.gameObject);
             }
         }
     }

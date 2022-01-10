@@ -6,7 +6,6 @@ namespace Code.Player
     [RequireComponent(typeof(Collider))]
     public class Sensor : MonoBehaviour
     {
-        // TODO: support multiple collisions
         public bool Blocked { private set; get; }
         public GameObject MovableGameObject { private set; get; }
         
