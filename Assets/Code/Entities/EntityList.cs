@@ -6,7 +6,7 @@ namespace Code.Entities
     [CreateAssetMenu]
     public class EntityList : ScriptableObject
     {
-        [SerializeField] private List<Entity> _entities = new List<Entity>();
+        [SerializeField] private List<Entity> _entities = new();
         
         public List<Entity> GetEntitiesByType(EntityType entityType)
         {
